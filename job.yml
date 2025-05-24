@@ -1,1 +1,18 @@
-
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello-whale-job
+spec:
+  ttlSecondsAfterFinished: 120 # <--- ADD THIS LINE (2 minutes = 120 seconds)
+  template:
+    metadata:
+      labels:
+        app: hello-whale-job-pod
+    spec:
+      serviceAccountName: hello-whale-sa
+      containers:
+      - name: hello-whale-container
+        image: vamsijakkula/hellowhale-job:v1
+        imagePullPolicy: Always
+      restartPolicy: OnFailure
+  backoffLimit: 4
