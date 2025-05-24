@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: hello-whale-job-binding
+  namespace: default # This role binding is also scoped to the 'default' namespace
+subjects:
+- kind: ServiceAccount
+  name: hello-whale-sa # The ServiceAccount that will receive the permissions
+  namespace: default
+roleRef:
+  kind: Role
+  name: hello-whale-job-manager # The Role that defines the permissions
+  apiGroup: rbac.authorization.k8s.io # Must be rbac.authorization.k8s.io for Roles
