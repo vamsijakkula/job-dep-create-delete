@@ -1,8 +1,11 @@
 To Run this Job 
 ****************
 kubectl create -f hellowhale-sa.yml 
+
 kubectl create -f hellowhale-role.yml
+
 kubectl create -f hellowhale-rb.yml
+
 kubectl create -f job.yml
 
 Other Commands
