@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: hello-whale-job-manager
+  namespace: default # This role is scoped to the 'default' namespace
+rules:
+- apiGroups: ["apps"] # Permissions for Deployments
+  resources: ["deployments"]
+  verbs: ["create", "get", "list", "watch", "delete"] # Create, get, list, watch status, and delete deployments
+- apiGroups: [""] # Permissions for Services (core API group)
+  resources: ["services"]
+  verbs: ["create", "delete"] # Create and delete services (get, list, watch are not explicitly needed by your script for services)
